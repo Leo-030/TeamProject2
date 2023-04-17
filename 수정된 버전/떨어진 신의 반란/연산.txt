@@ -1,0 +1,4 @@
+연산:
+def = (100 - def)% 만 데미지 들어감
+skillStr: skillStr/100 * str
+나머지도 다 그렇게 연산
