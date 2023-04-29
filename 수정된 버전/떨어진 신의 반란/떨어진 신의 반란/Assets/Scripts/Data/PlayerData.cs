@@ -7,8 +7,7 @@ using UnityEngine;
 public class PlayerData
 {
     public bool tutorial;
-    public string name;
     public int level;
     public int stageClear;
-    public List<CharacterData> hasCharacterList;
+    public List<int> characterList;
 }

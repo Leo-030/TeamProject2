@@ -28,7 +28,7 @@ public class TutorialPlayManager : MonoBehaviour
         switch (next)
         {
             case -1:
-                Print("불의 신 니켈", "어이 데미우르스 안녕!\n요새 통 안보이더니 뭐하고 지내..\n으악!");
+                Print("불의 신 니켈", "어이 데미우르스 안녕!\n요새 통 안보이더니 뭐하고 지내..으악!");
                 break;
             case 0:
                 Print("???", "하하하 나의 공격에 이렇게 쉽게 당하다니 역시 신들은 별것도 아니구만\n어? 그 옆에도 벌레가 있구나! 잘가라!");
@@ -110,7 +110,6 @@ public class TutorialPlayManager : MonoBehaviour
     public void OnClick()
     {
         next++;
-        Debug.Log(next);
     }
 
     private void Print(string name, string text)
