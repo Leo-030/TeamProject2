@@ -11,6 +11,7 @@ public class LobbyManager : MonoBehaviour
     public GameObject characterPrefab;
     public GameObject characterDataPrefab;
     public GameObject stagePrefab;
+    public GameObject level;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class LobbyManager : MonoBehaviour
             }
 
             GameObject characterTmp = Instantiate(characterPrefab);
-            characterTmp.GetComponent<CharcterPrefab>().currentUI = characterUI;
+            characterTmp.GetComponent<CharacterPrefab>().currentUI = characterUI;
             TextMeshProUGUI t = characterTmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             characterTmp.transform.SetParent(characterScroll.transform.GetChild(i / col));
             characterTmp.transform.localScale = new Vector3(1, 1, 1);
@@ -44,7 +45,7 @@ public class LobbyManager : MonoBehaviour
             uiTmp.transform.localPosition = new Vector3(0, 0, 0);
             uiTmp.transform.GetChild(0).GetChild(4).gameObject.GetComponent<UIChanger>().currentUI = uiTmp;
             uiTmp.transform.GetChild(0).GetChild(4).gameObject.GetComponent<UIChanger>().nextUI = characterUI;
-            characterTmp.GetComponent<CharcterPrefab>().nextUI = uiTmp;
+            characterTmp.GetComponent<CharacterPrefab>().nextUI = uiTmp;
 
             int characterId = DataManager.instance.database.playerData.characterList[i];
             int typeId = -1;
@@ -123,6 +124,7 @@ public class LobbyManager : MonoBehaviour
             stageScroll.transform.GetChild(i).gameObject.SetActive(true);
         }
 
+        level.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Level: " + DataManager.instance.database.playerData.level;
     }
 
     // Update is called once per frame

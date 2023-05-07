@@ -109,13 +109,13 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
 --compilation-defines=TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
---compilation-defines=CSHARP_7_OR_LATER
---compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
 --compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=PACKAGE_UITOOLKIT
+--compilation-defines=CSHARP_7_OR_LATER
+--compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=MODULE_AI_EXISTS
 --compilation-defines=MODULE_ANIMATION_EXISTS
 --compilation-defines=MODULE_PHYSICS_EXISTS
@@ -127,8 +127,8 @@ Library: lib_burst_generated
 --linker-options=PdbAltPath="떨어진 신의 반란_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
---root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
+--root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Flow.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
@@ -260,13 +260,13 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
 --compilation-defines=TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
---compilation-defines=CSHARP_7_OR_LATER
---compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
 --compilation-defines=PACKAGE_ANIMATION
 --compilation-defines=PACKAGE_UITOOLKIT
+--compilation-defines=CSHARP_7_OR_LATER
+--compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=MODULE_AI_EXISTS
 --compilation-defines=MODULE_ANIMATION_EXISTS
 --compilation-defines=MODULE_PHYSICS_EXISTS
@@ -278,8 +278,8 @@ Library: lib_burst_generated
 --linker-options=PdbAltPath="떨어진 신의 반란_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
---root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
+--root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Flow.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=D:\게임 제작\떨어진 신의 반란\떨어진 신의 반란\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll

@@ -11,11 +11,11 @@ public class TypeData
     public int strongType;
     public int strongInc;
 
-    //public TypeData(TypeData t)
-    //{
-    //    this.id = t.id;
-    //    this.name = new string(t.name);
-    //    strong = t.strong;
-    //    strongInc = t.strongInc;
-    //}
+    public TypeData(TypeData t)
+    {
+        this.id = t.id;
+        this.name = new string(t.name);
+        this.strongType = t.strongType;
+        this.strongInc = t.strongInc;
+    }
 }

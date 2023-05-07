@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CharcterPrefab : MonoBehaviour, IPointerClickHandler
+public class CancleCharacterPrefab : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject currentUI;
-    public GameObject nextUI;
+    public int id;
+    private FightManager fightManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
     }
 
     // Update is called once per frame
@@ -23,7 +23,6 @@ public class CharcterPrefab : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        currentUI.SetActive(false);
-        nextUI.SetActive(true);
+        fightManager.CancleParty(id);
     }
 }

@@ -41,4 +41,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fight.unity
     guid: d737463482a7bae48bc913e8c6216952
+  - enabled: 1
+    path: Assets/Scenes/Stage 1 Story.unity
+    guid: 2e2a73e790c9b714ca4fabaa35291217
+  - enabled: 1
+    path: Assets/Scenes/Stage 2 Story.unity
+    guid: 6660b20d61defd84f95b0053f36c1a18
+  - enabled: 1
+    path: Assets/Scenes/Stage 3 Story.unity
+    guid: 59d46c1cb1804064cbe0de89d72fe7a1
+  - enabled: 1
+    path: Assets/Scenes/Stage 4 Story.unity
+    guid: 2ddeb083a842c03479c2dc95f52e5549
+  - enabled: 1
+    path: Assets/Scenes/Stage 5 Story.unity
+    guid: 0f889013cc429a74688d13368771d8d9
+  - enabled: 1
+    path: Assets/Scenes/Stage 6 Story.unity
+    guid: 04c66aa7c4feea44fb098b9429d3c09a
+  - enabled: 1
+    path: Assets/Scenes/Stage 7 Story.unity
+    guid: 552e83e6893ef9f4a91aff6085246b9a
   m_configObjects: {}

@@ -1,11 +1,14 @@
 {
     "playerData": {
-        "tutorial": true,
+        "tutorial": false,
         "level": 1,
-        "stageClear": 7,
-        "characterList": [
-            0,1,2,3,4,5,6
-        ]
+        "exp": 0,
+        "stageClear": 0,
+        "characterList": [],
+        "audioData": {
+            "master": 1.0,
+            "bgm": 1.0
+        }
     },
     "typeDataList": [
         {
@@ -216,20 +219,20 @@
         },
         {
             "id": 26,
-            "name": "반격",
-            "description": "공격을 받을 때 까지 아무 행동도 취할 수 없습니다. 공격을 받을 때 str 공격을 받지 않은 턴 * 100% 만큼의 데미지를 상대에게 줍니다.",
+            "name": "강력한 공격(빛)",
+            "description": "str 200% 만큼의 빛속성 데미지를 줍니다.",
             "cost": 2
         },
         {
             "id": 27,
-            "name": "부활",
-            "description": "죽은 아군 캐릭터를 절반의 체력으로 부활시킵니다.",
+            "name": "다시 시작",
+            "description": "모든 아군 캐릭터의 체력을 모두 회복시킵니다.",
             "cost": 5
         },
         {
             "id": 28,
-            "name": "다음 카드",
-            "description": "카드 한장을 뽑고 해당 카드를 0코스트로 사용합니다. 카드가 없다면 str 100%만큼 빛속성 데미지를 줍니다.",
+            "name": "카드 버리기",
+            "description": "카드를 모두 버립니다. str 버린 카드 수 * 100 % 만큼 데미지를 줍니다.",
             "cost": 2
         },
         {
@@ -240,9 +243,9 @@
         },
         {
             "id": 30,
-            "name": "임시 부활",
-            "description": "죽은 아군 캐릭터를 체력 1로 부활시킵니다. 부활한 캐릭터는 피해를 입지 않습니다. 4 턴 후, 부활한 캐릭터는 사망합니다.",
-            "cost": 5
+            "name": "강력한 공격(어둠)",
+            "description": "str 200%만큼 어둠속성 데미지를 줍니다.",
+            "cost": 2
         },
         {
             "id": 31,
@@ -525,7 +528,7 @@
         {
             "id": 22,
             "name": "덱의 공격",
-            "description": "str 상대의 덱에 있는 카드 * 30%만큼 어둠속성 데미지를 줍니다.ㄴ"
+            "description": "str 상대의 덱에 있는 카드 * 30%만큼 어둠속성 데미지를 줍니다."
         },
         {
             "id": 23,
