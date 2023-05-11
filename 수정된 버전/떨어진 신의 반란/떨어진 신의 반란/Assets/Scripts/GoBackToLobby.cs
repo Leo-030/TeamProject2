@@ -46,6 +46,12 @@ public class GoBackToLobby : MonoBehaviour
             }
             DataManager.instance.database.playerData.stageClear = stageManager.GetComponent<StageManager>().stage;
             DataManager.instance.JsonSave();
+            if (stageManager.GetComponent<StageManager>().stage == 7)
+            {
+                Destroy(stageManager);
+                SceneManager.LoadScene("Stage 7 End Story");
+                return;
+            }
         }
         Destroy(stageManager);
         SceneManager.LoadScene("Lobby");

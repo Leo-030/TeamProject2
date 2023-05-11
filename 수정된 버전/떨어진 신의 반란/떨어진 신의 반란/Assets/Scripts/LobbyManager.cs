@@ -124,7 +124,7 @@ public class LobbyManager : MonoBehaviour
             stageScroll.transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        level.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Level: " + DataManager.instance.database.playerData.level;
+        level.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "" + DataManager.instance.database.playerData.level;
     }
 
     // Update is called once per frame

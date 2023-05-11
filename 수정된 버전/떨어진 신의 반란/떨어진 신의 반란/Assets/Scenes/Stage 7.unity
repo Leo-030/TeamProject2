@@ -3698,7 +3698,6 @@ MonoBehaviour:
   isChange: 0
   wrapper: {fileID: 6825009766492344736, guid: 4b879c7ae2fa24a4e846f79008adc035, type: 3}
   subStagePrefab: {fileID: 8044890400909561290, guid: b55a0bfcdb1e3044088f69f74ade181a, type: 3}
-  GoBackObject: {fileID: 0}
 --- !u!4 &1547381990
 Transform:
   m_ObjectHideFlags: 0
