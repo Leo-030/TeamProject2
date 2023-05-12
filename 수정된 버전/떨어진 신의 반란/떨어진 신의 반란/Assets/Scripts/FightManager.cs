@@ -204,6 +204,7 @@ public class FightManager : MonoBehaviour
     public List<GameObject> bgimage;
     public GameObject selectCharacterPrefab;
     public GameObject cancleCharacterPrefab;
+    public GameObject emptyCharacterPrefab;
     public GameObject wrapper;
     public GameObject characterHpPrefab;
     public GameObject turnPrefab;
@@ -224,6 +225,7 @@ public class FightManager : MonoBehaviour
     private GameObject selectUI;
     private GameObject fightUI;
     private List<int> idList = new List<int>();
+    private List<GameObject> emptyGameObjectList = new List<GameObject>();
     private List<GameObject> idGameObjectList = new List<GameObject>();
     private List<Character> liveCharacterList = new List<Character>();
     private List<GameObject> liveCharacterGameObjectList = new List<GameObject>();
@@ -305,6 +307,15 @@ public class FightManager : MonoBehaviour
                 }
             }
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject tmp = Instantiate(emptyCharacterPrefab);
+            tmp.transform.SetParent(selectUI.transform);
+            tmp.transform.localScale = new Vector3(1, 1, 1);
+            tmp.transform.localPosition = new Vector3(500 - i * 500, 200, 0);
+            emptyGameObjectList.Add(tmp);
+        }
     }
 
     // Update is called once per frame
@@ -349,6 +360,10 @@ public class FightManager : MonoBehaviour
             }
         }
         idList.Add(id);
+
+        Destroy(emptyGameObjectList[emptyGameObjectList.Count - 1]);
+        emptyGameObjectList.RemoveAt(emptyGameObjectList.Count - 1);
+
         GameObject tmp = Instantiate(cancleCharacterPrefab);
         tmp.GetComponent<CancleCharacterPrefab>().id = id;
         tmp.transform.SetParent(selectUI.transform);
@@ -411,6 +426,12 @@ public class FightManager : MonoBehaviour
         {
             idGameObjectList[i].transform.localPosition = new Vector3(-500 + i * 500, 200, 0);
         }
+
+        GameObject tmp = Instantiate(emptyCharacterPrefab);
+        tmp.transform.SetParent(selectUI.transform);
+        tmp.transform.localScale = new Vector3(1, 1, 1);
+        tmp.transform.localPosition = new Vector3(500 - emptyGameObjectList.Count * 500, 200, 0);
+        emptyGameObjectList.Add(tmp);
     }
 
     private void StartFight()
@@ -461,9 +482,14 @@ public class FightManager : MonoBehaviour
                 }
                 for (int j = 0; j < DataManager.instance.database.stageDataList[i].bossList.Count; j++)
                 {
-                    for (int k = 0; k < DataManager.instance.database.bossDataList.Count; k++)
+                    int bossId = DataManager.instance.database.stageDataList[i].bossList[j];
+                    if (stage <= DataManager.instance.database.playerData.stageClear)
                     {
-                        if (DataManager.instance.database.stageDataList[i].bossList[j] == DataManager.instance.database.bossDataList[k].id)
+                        bossId = DataManager.instance.database.stageDataList[i].bossList[j] + 1;
+                    }
+                    for (int k = 0; k < DataManager.instance.database.bossDataList.Count; k++)
+                    { 
+                        if (bossId == DataManager.instance.database.bossDataList[k].id)
                         {
                             liveMonsterList.Add(new Monster(DataManager.instance.database.bossDataList[k], DataManager.instance.database.stageDataList[i].level));
                             break;
@@ -534,8 +560,8 @@ public class FightManager : MonoBehaviour
             tmp.GetComponent<CardPrefab>().id = currentCardList[i].id;
             tmp.GetComponent<CardPrefab>().characterId = currentCardList[i].characterId;
             tmp.GetComponent<Image>().sprite = LoadImage("./Data/" + currentCardList[i].image + "/Character.png");
-            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "코스트: " + currentCardList[i].cost.ToString();
-            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text += "\n" + currentCardList[i].description;
+            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currentCardList[i].cost.ToString();
+            tmp.transform.GetChild(1).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currentCardList[i].description;
             tmp.transform.SetParent(fightUI.transform);
             tmp.transform.localScale = new Vector3(1, 1, 1);
             tmp.transform.localPosition = new Vector3(-500+ i * 180, -250, 0);
@@ -605,8 +631,8 @@ public class FightManager : MonoBehaviour
             tmp.GetComponent<CardPrefab>().id = currentCardList[i].id;
             tmp.GetComponent<CardPrefab>().characterId = currentCardList[i].characterId;
             tmp.GetComponent<Image>().sprite = LoadImage("./Data/" + currentCardList[i].image + "/Character.png");
-            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "코스트: " + currentCardList[i].cost.ToString();
-            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text += "\n" + currentCardList[i].description;
+            tmp.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currentCardList[i].cost.ToString();
+            tmp.transform.GetChild(1).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = currentCardList[i].description;
             tmp.transform.SetParent(fightUI.transform);
             tmp.transform.localScale = new Vector3(1, 1, 1);
             tmp.transform.localPosition = new Vector3(-500 + i * 180, -250, 0);
@@ -686,7 +712,23 @@ public class FightManager : MonoBehaviour
         {
             liveCardList.Remove(delete[i]);
         }
+        delete.Clear();
+        for (int i = 0; i < deadCardList.Count; i++)
+        {
+            for (int j = 0; j < deadCharacterList.Count; j++)
+            {
+                if (deadCardList[i].characterId == deadCharacterList[j].id)
+                {
+                    delete.Add(deadCardList[i]);
+                }
+            }
+        }
+        for (int i = 0; i < delete.Count; i++)
+        {
+            deadCardList.Remove(delete[i]);
+        }
     }
+
 
     private void DetectOverHp()
     {
@@ -1093,7 +1135,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1178,7 +1220,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1340,7 +1382,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1443,7 +1485,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1558,7 +1600,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1619,7 +1661,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1677,7 +1719,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1736,7 +1778,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1804,7 +1846,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1868,7 +1910,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -1932,7 +1974,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2002,7 +2044,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2067,7 +2109,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2125,7 +2167,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2197,7 +2239,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int str = liveMonsterList[index].str * deadCardList.Count;
@@ -2310,7 +2352,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2357,7 +2399,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2406,7 +2448,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2450,7 +2492,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2494,7 +2536,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2538,7 +2580,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2582,7 +2624,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2626,7 +2668,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2670,7 +2712,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2714,7 +2756,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2758,7 +2800,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2802,7 +2844,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2846,7 +2888,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2890,7 +2932,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2934,7 +2976,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -2976,7 +3018,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         liveCharacterList[choose].bufList.Add(new Buf(2, false, false, 1, 10, 0, 0, 0));
@@ -3013,7 +3055,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -3059,7 +3101,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -3110,7 +3152,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -3154,7 +3196,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         int typeStr = 100;
@@ -3196,7 +3238,7 @@ public class FightManager : MonoBehaviour
         }
         if (targetIndex.Count > 0)
         {
-            choose = Random.Range(0, targetIndex.Count);
+            choose = targetIndex[Random.Range(0, targetIndex.Count)];
         }
 
         liveCharacterList[choose].bufList.Add(new Buf(2, false, false, 7, 10, 0, 0, 0));

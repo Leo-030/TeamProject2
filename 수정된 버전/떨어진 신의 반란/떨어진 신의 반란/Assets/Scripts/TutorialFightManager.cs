@@ -5,15 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TutorialFightManager : MonoBehaviour
 {
-    public GameObject monster;
-    public GameObject character;
     public List<GameObject> tutorialUI;
     public GameObject fightUI;
     public GameObject menuUI;
-    private CharacterData monsterData;
-    private CharacterData characterData;
     private bool isChange = false;
-    private bool myTurn = true;
     private int tutorialScene = 0;
 
     // Start is called before the first frame update

@@ -1186,6 +1186,7 @@ MonoBehaviour:
   - {fileID: 768969669}
   selectCharacterPrefab: {fileID: 5285601044117468442, guid: bf8c6dd3341597b458de8e9ed0f700db, type: 3}
   cancleCharacterPrefab: {fileID: 5285601044117468442, guid: 592ca872316aae149908c6bde9c09e38, type: 3}
+  emptyCharacterPrefab: {fileID: 5285601044117468442, guid: 96c8e4df24efd9a4db3e8a00ac28c45b, type: 3}
   wrapper: {fileID: 6825009766492344736, guid: 5412c63ac0a49b342b08fb6503b61581, type: 3}
   characterHpPrefab: {fileID: 6958622226765993020, guid: 6987f90940ccafa4e8e3b4893b020f79, type: 3}
   turnPrefab: {fileID: 154876433052723317, guid: 450d5605cd57a0647ab0020b5e35f9d1, type: 3}
