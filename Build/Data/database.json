@@ -106,7 +106,7 @@
         {
             "id": 7,
             "name": "불속성 도트 데미지",
-            "description": "턴 종료 시 10씩 불속성 데미지를 받는 디버프를 부여합니다. (사망 전까지 유지)",
+            "description": "턴 종료 시 최대 체력의 10%씩 불속성 데미지를 받는 디버프를 부여합니다. (사망 전까지 유지) (방어력 무시)",
             "cost": 3
         },
         {
@@ -214,7 +214,7 @@
         {
             "id": 25,
             "name": "빛속성 도트 데미지",
-            "description": "턴 종료 시 잃은 체력의 10% 만큼 데미지를 받는 디버프를 부여합니다. (사망 전까지 유지)",
+            "description": "턴 종료 시 잃은 체력의 10% 만큼 데미지를 받는 디버프를 부여합니다. (사망 전까지 유지) (방어력 무시)",
             "cost": 4
         },
         {
@@ -493,7 +493,7 @@
         {
             "id": 15,
             "name": "불속성 도트 데미지(하)",
-            "description": "턴 종료 시 10씩 불속성 데미지를 받는 디버프를 부여합니다. (2 턴 동안 지속)"
+            "description": "턴 종료 시 최대 체력의 10%씩 불속성 데미지를 받는 디버프를 부여합니다. (2 턴 동안 지속) (방어력 무시)"
         },
         {
             "id": 16,
@@ -983,11 +983,11 @@
             "image": "Images/Bosses/0",
             "name": "불의 신 니켈",
             "type": 1,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 300,
+            "str": 600,
             "strInc": 25,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1005,11 +1005,11 @@
             "image": "Images/Bosses/1",
             "name": "빈 자리를 차지한 마왕",
             "type": 1,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 300,
+            "str": 600,
             "strInc": 25,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1023,11 +1023,11 @@
             "image": "Images/Bosses/2",
             "name": "물의 신 스쿠",
             "type": 2,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 200,
+            "str": 400,
             "strInc": 15,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1045,11 +1045,11 @@
             "image": "Images/Bosses/3",
             "name": "빈 자리를 차지한 마왕",
             "type": 2,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 200,
+            "str": 400,
             "strInc": 15,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1063,11 +1063,11 @@
             "image": "Images/Bosses/4",
             "name": "자연의 신 레미",
             "type": 3,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 150,
+            "str": 300,
             "strInc": 15,
-            "def": 75,
+            "def": 150,
             "defInc": 20,
             "patternList": [
                 {
@@ -1089,11 +1089,11 @@
             "image": "Images/Bosses/5",
             "name": "빈 자리를 차지한 마왕",
             "type": 3,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 150,
+            "str": 300,
             "strInc": 15,
-            "def": 75,
+            "def": 150,
             "defInc": 20,
             "patternList": [
                 {
@@ -1107,11 +1107,11 @@
             "image": "Images/Bosses/6",
             "name": "하늘의 신 하피",
             "type": 4,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 200,
+            "str": 400,
             "strInc": 15,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1133,11 +1133,11 @@
             "image": "Images/Bosses/7",
             "name": "빈 자리를 차지한 마왕",
             "type": 4,
-            "hp": 300,
+            "hp": 600,
             "hpInc": 60,
-            "str": 200,
+            "str": 400,
             "strInc": 15,
-            "def": 25,
+            "def": 50,
             "defInc": 10,
             "patternList": [
                 {
@@ -1151,11 +1151,11 @@
             "image": "Images/Bosses/8",
             "name": "빛의 신 세이야",
             "type": 5,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 200,
+            "str": 400,
             "strInc": 20,
-            "def": 50,
+            "def": 100,
             "defInc": 15,
             "patternList": [
                 {
@@ -1169,11 +1169,11 @@
             "image": "Images/Bosses/9",
             "name": "빈 자리를 차지한 마왕",
             "type": 5,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 200,
+            "str": 400,
             "strInc": 20,
-            "def": 50,
+            "def": 100,
             "defInc": 15,
             "patternList": [
                 {
@@ -1187,11 +1187,11 @@
             "image": "Images/Bosses/10",
             "name": "어둠의 신 벨라",
             "type": 6,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 200,
+            "str": 400,
             "strInc": 20,
-            "def": 50,
+            "def": 100,
             "defInc": 15,
             "patternList": [
                 {
@@ -1209,11 +1209,11 @@
             "image": "Images/Bosses/11",
             "name": "빈 자리를 차지한 마왕",
             "type": 6,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 200,
+            "str": 400,
             "strInc": 20,
-            "def": 50,
+            "def": 100,
             "defInc": 15,
             "patternList": [
                 {
@@ -1227,11 +1227,11 @@
             "image": "Images/Bosses/12",
             "name": "악마 진 벨리나",
             "type": 7,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 300,
+            "str": 600,
             "strInc": 25,
-            "def": 75,
+            "def": 150,
             "defInc": 20,
             "patternList": [
                 {
@@ -1253,11 +1253,11 @@
             "image": "Images/Bosses/13",
             "name": "빈 자리를 차지한 마왕",
             "type": 7,
-            "hp": 500,
+            "hp": 1000,
             "hpInc": 100,
-            "str": 300,
+            "str": 600,
             "strInc": 25,
-            "def": 75,
+            "def": 150,
             "defInc": 20,
             "patternList": [
                 {

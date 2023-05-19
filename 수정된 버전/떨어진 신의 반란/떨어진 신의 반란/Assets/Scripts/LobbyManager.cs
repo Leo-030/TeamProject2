@@ -127,12 +127,6 @@ public class LobbyManager : MonoBehaviour
         level.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "" + DataManager.instance.database.playerData.level;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private Sprite LoadImage(string path)
     {
         byte[] byteTexture = System.IO.File.ReadAllBytes(path);

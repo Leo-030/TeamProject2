@@ -17,12 +17,6 @@ public class SelectWantPrefab : MonoBehaviour, IPointerClickHandler
         fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (id)

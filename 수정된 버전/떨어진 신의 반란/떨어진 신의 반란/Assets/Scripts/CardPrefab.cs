@@ -18,12 +18,6 @@ public class CardPrefab : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         fightManager = GameObject.Find("FightManager").GetComponent<FightManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         bool use = fightManager.CheckCost(DataManager.instance.database.skillDataList[id].cost);

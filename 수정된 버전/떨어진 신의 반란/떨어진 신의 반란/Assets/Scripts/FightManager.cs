@@ -318,12 +318,6 @@ public class FightManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private Sprite LoadImage(string path)
     {
         byte[] byteTexture = System.IO.File.ReadAllBytes(path);
@@ -802,17 +796,20 @@ public class FightManager : MonoBehaviour
                     {
                         if (attackType == DataManager.instance.database.typeDataList[k].id)
                         {
-                            if (liveCharacterList[k].type.id == DataManager.instance.database.typeDataList[i].strongType)
+                            if (liveCharacterList[i].type.id == DataManager.instance.database.typeDataList[k].strongType)
                             {
                                 typeStr = DataManager.instance.database.typeDataList[k].strongInc;
                                 break;
                             }
                         }
                     }
-                    liveCharacterList[i].hp -= liveCharacterList[i].bufList[j].damage * typeStr / 100;
+                    liveCharacterList[i].hp -= liveCharacterList[i].maxHp * liveCharacterList[i].bufList[j].damage / 100 * typeStr / 100;
                     liveCharacterList[i].hp -= (liveCharacterList[i].maxHp - liveCharacterList[i].hp) * liveCharacterList[i].bufList[j].damageDeadHpPercent / 100 * typeStr / 100;
                 }
-                liveCharacterList[i].bufList[j].turn--;
+                if (liveCharacterList[i].bufList[j].turn > 0)
+                {
+                    liveCharacterList[i].bufList[j].turn--;
+                }
                 if (liveCharacterList[i].bufList[j].turn == 0)
                 {
                     liveCharacterList[i].str -= liveCharacterList[i].bufList[j].str;
@@ -839,17 +836,20 @@ public class FightManager : MonoBehaviour
                     {
                         if (attackType == DataManager.instance.database.typeDataList[k].id)
                         {
-                            if (liveMonsterList[k].type.id == DataManager.instance.database.typeDataList[k].strongType)
+                            if (liveMonsterList[i].type.id == DataManager.instance.database.typeDataList[k].strongType)
                             {
                                 typeStr = DataManager.instance.database.typeDataList[k].strongInc;
                                 break;
                             }
                         }
                     }
-                    liveMonsterList[i].hp -= liveMonsterList[i].bufList[j].damage * typeStr / 100;
+                    liveMonsterList[i].hp -= liveMonsterList[i].maxHp * liveMonsterList[i].bufList[j].damage / 100 * typeStr / 100;
                     liveMonsterList[i].hp -= (liveMonsterList[i].maxHp - liveMonsterList[i].hp) * liveMonsterList[i].bufList[j].damageDeadHpPercent / 100 * typeStr / 100;
                 }
-                liveMonsterList[i].bufList[j].turn--;
+                if (liveMonsterList[i].bufList[j].turn > 0)
+                {
+                    liveMonsterList[i].bufList[j].turn--;
+                }
                 if (liveMonsterList[i].bufList[j].turn == 0)
                 {
                     liveMonsterList[i].str -= liveMonsterList[i].bufList[j].str;
@@ -1007,17 +1007,20 @@ public class FightManager : MonoBehaviour
                     {
                         if (attackType == DataManager.instance.database.typeDataList[k].id)
                         {
-                            if (liveCharacterList[k].type.id == DataManager.instance.database.typeDataList[i].strongType)
+                            if (liveCharacterList[i].type.id == DataManager.instance.database.typeDataList[k].strongType)
                             {
                                 typeStr = DataManager.instance.database.typeDataList[k].strongInc;
                                 break;
                             }
                         }
                     }
-                    liveCharacterList[i].hp -= liveCharacterList[i].bufList[j].damage * typeStr / 100;
+                    liveCharacterList[i].hp -= liveCharacterList[i].maxHp * liveCharacterList[i].bufList[j].damage / 100 * typeStr / 100;
                     liveCharacterList[i].hp -= (liveCharacterList[i].maxHp - liveCharacterList[i].hp) * liveCharacterList[i].bufList[j].damageDeadHpPercent / 100 * typeStr / 100;
                 }
-                liveCharacterList[i].bufList[j].turn--;
+                if (liveCharacterList[i].bufList[j].turn > 0)
+                {
+                    liveCharacterList[i].bufList[j].turn--;
+                }
                 if (liveCharacterList[i].bufList[j].turn == 0)
                 {
                     liveCharacterList[i].str -= liveCharacterList[i].bufList[j].str;
@@ -1044,17 +1047,20 @@ public class FightManager : MonoBehaviour
                     {
                         if (attackType == DataManager.instance.database.typeDataList[k].id)
                         {
-                            if (liveMonsterList[k].type.id == DataManager.instance.database.typeDataList[k].strongType)
+                            if (liveMonsterList[i].type.id == DataManager.instance.database.typeDataList[k].strongType)
                             {
                                 typeStr = DataManager.instance.database.typeDataList[k].strongInc;
                                 break;
                             }
                         }
                     }
-                    liveMonsterList[i].hp -= liveMonsterList[i].bufList[j].damage * typeStr / 100;
+                    liveMonsterList[i].hp -= liveMonsterList[i].maxHp * liveMonsterList[i].bufList[j].damage / 100 * typeStr / 100;
                     liveMonsterList[i].hp -= (liveMonsterList[i].maxHp - liveMonsterList[i].hp) * liveMonsterList[i].bufList[j].damageDeadHpPercent / 100 * typeStr / 100;
-                }   
-                liveMonsterList[i].bufList[j].turn--;
+                }
+                if (liveMonsterList[i].bufList[j].turn > 0)
+                {
+                    liveMonsterList[i].bufList[j].turn--;
+                }
                 if (liveMonsterList[i].bufList[j].turn == 0)
                 {
                     liveMonsterList[i].str -= liveMonsterList[i].bufList[j].str;
@@ -1078,10 +1084,10 @@ public class FightManager : MonoBehaviour
     {
         if (liveMonsterList.Count == 0)
         {
-            DataManager.instance.database.playerData.exp += deadMonsterList.Count * 1000 + 100 * level;
-            while (DataManager.instance.database.playerData.exp >= 1000 + 100 * DataManager.instance.database.playerData.level)
+            DataManager.instance.database.playerData.exp += deadMonsterList.Count * (20 * level);
+            while (DataManager.instance.database.playerData.exp >= 100 * DataManager.instance.database.playerData.level)
             {
-                DataManager.instance.database.playerData.exp -= 1000 + 100 * DataManager.instance.database.playerData.level;
+                DataManager.instance.database.playerData.exp -= 100 * DataManager.instance.database.playerData.level;
                 DataManager.instance.database.playerData.level += 1;
             }
             DataManager.instance.JsonSave();
@@ -1091,10 +1097,10 @@ public class FightManager : MonoBehaviour
         }
         if (liveCharacterList.Count == 0)
         {
-            DataManager.instance.database.playerData.exp += deadMonsterList.Count * 1000 + 50 * level;
-            while (DataManager.instance.database.playerData.exp >= 1000 + 100 * DataManager.instance.database.playerData.level)
+            DataManager.instance.database.playerData.exp += deadMonsterList.Count * (20 * level);
+            while (DataManager.instance.database.playerData.exp >= 100 * DataManager.instance.database.playerData.level)
             {
-                DataManager.instance.database.playerData.exp -= 1000 + 100 * DataManager.instance.database.playerData.level;
+                DataManager.instance.database.playerData.exp -= 100 * DataManager.instance.database.playerData.level;
                 DataManager.instance.database.playerData.level += 1;
             }
             DataManager.instance.JsonSave();

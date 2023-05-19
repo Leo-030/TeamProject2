@@ -18,12 +18,6 @@ public class SubStagePrefab : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnClick()
     {
         if (isStory)
