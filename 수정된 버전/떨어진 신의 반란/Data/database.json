@@ -916,7 +916,7 @@
         },
         {
             "id": 18,
-            "image": "Imagess/Monsters/18",
+            "image": "Images/Monsters/18",
             "name": "악의 하수인 1",
             "type": 7,
             "hp": 500,
